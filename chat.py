@@ -85,7 +85,7 @@ def main():
 
             content = response.choices[0].message.content
             reply = content.strip() if content else ""
-            print("GPT:", reply, "\n")
+            print("GPT:", colored(reply, "green"), "\n")
 
             messages.append({"role": "assistant", "content": reply})
 
