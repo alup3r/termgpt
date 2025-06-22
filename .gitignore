@@ -38,3 +38,5 @@ chat_memory.db
 # Possibly cache or runtime data files (if you create any)
 *.sqlite3
 *.sqlite
+
+tests
