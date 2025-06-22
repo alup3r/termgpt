@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import os
+
 from openai import OpenAI
+from termcolor import colored
 
 
 api_key = os.getenv("OPENAI_API_KEY")
@@ -9,9 +11,12 @@ if not api_key:
     print("Error: OPENAI_API_KEY not set.")
     exit(1)
 
+model_name = "gpt-3.5-turbo"
 client = OpenAI(api_key=api_key)
 
-print("Welcome to terminal GPT chat! Type 'exit' to quit.")
+print("Welcome to TermGPT!")
+print(f"You are using {colored(model_name, 'green')}")
+print("Type 'exit' to quit.\n")
 
 messages = []
 summary = None
