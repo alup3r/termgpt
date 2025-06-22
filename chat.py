@@ -44,7 +44,7 @@ def main():
     print("Type 'exit' to quit.\n")
 
     conn = init_db()
-    messages = load_recent_messages(conn)
+    messages = []
     summary = None
     MAX_MESSAGES = 10
 
@@ -63,6 +63,16 @@ def main():
                     print(colored("history cleared.\n", "green"))
                 else:
                     print(colored("reset cancelled.\n", "red"))
+                continue
+
+
+            if user_input.strip() in {"/recall", "/resume"}:
+                confirm = input(colored('load previous memory? (y/n): ', 'yellow'))
+                if confirm.lower() == 'y':
+                    messages = load_recent_messages(conn, limit=MAX_MESSAGES)
+                    print(colored('memory loaded.\n', 'green'))
+                else:
+                    print(colored('operation cancelled', 'red'))
                 continue
             
 
