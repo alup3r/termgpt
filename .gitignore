@@ -28,3 +28,13 @@ dist/
 *.key
 *.pem
 config.ini
+
+# SQLite database file (local persistent memory)
+chat_memory.db
+
+# Any other local SQLite DB files you might create
+*.db
+
+# Possibly cache or runtime data files (if you create any)
+*.sqlite3
+*.sqlite

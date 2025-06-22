@@ -5,6 +5,9 @@ import os
 from openai import OpenAI
 from termcolor import colored
 
+from memory.schema import init_db
+from memory.storage import save_message, load_recent_messages
+
 
 def summarize_history(history, client):
     """Summarize older messages into one short system message"""
@@ -40,7 +43,8 @@ def main():
     print(f"You are using {colored(model_name, 'green')}")
     print("Type 'exit' to quit.\n")
 
-    messages = []
+    conn = init_db()
+    messages = load_recent_messages(conn)
     summary = None
     MAX_MESSAGES = 10
 
@@ -63,6 +67,7 @@ def main():
             
 
             messages.append({"role": "user", "content": user_input})
+            save_message(conn, "user", user_input)
 
             # if we have too many messages, summarize oldest ones
             if len(messages) > MAX_MESSAGES:
@@ -88,6 +93,7 @@ def main():
             print("GPT:", colored(reply, "green"), "\n")
 
             messages.append({"role": "assistant", "content": reply})
+            save_message(conn, "assistant", reply)
 
         except KeyboardInterrupt:
             print("\nExiting.")
