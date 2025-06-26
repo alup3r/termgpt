@@ -1,6 +1,12 @@
+import os
 import sqlite3
 
-def init_db(path="chat_memory.db"):
+
+home = os.environ['HOME']
+db_path = f'{home}/Code/forge/py_forge/termgpt/memory/chat_memory.db'
+
+
+def init_db(path=db_path):
     conn = sqlite3.connect(path)
     cursor = conn.cursor()
 
@@ -15,3 +21,11 @@ def init_db(path="chat_memory.db"):
 
     conn.commit()
     return conn
+
+
+def main():
+    init_db()
+
+
+if __name__ == "__main__":
+    main()
