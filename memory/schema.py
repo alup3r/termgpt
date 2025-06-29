@@ -3,7 +3,7 @@ import sqlite3
 
 
 home = os.environ['HOME']
-db_path = f'{home}/Code/forge/py_forge/termgpt/memory/chat_memory.db'
+db_path = f'{home}/spellforge/tomes/termgpt/memory/chat_memory.db'
 
 
 def init_db(path=db_path):
